@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+    <title>Kickup Kid</title>
+    <style>
+      html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #f5efdf; touch-action: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-touch-callout: none; }
+      #unity-canvas { position: fixed; left: 0; top: 0; width: 100%; height: 100%; display: block; outline: none; background: #f5efdf; }
+      /* yükleme ekranı: çizgili defter sayfası, başlık oyunun kendi yazısıyla */
+      #kk-loader { position: fixed; left: 0; top: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #f5efdf;
+        background-image: linear-gradient(to right, transparent 0, transparent 9%, rgba(224, 122, 122, .65) 9%, rgba(224, 122, 122, .65) calc(9% + 2px), transparent calc(9% + 2px)), repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(157, 189, 224, .6) 33px, rgba(157, 189, 224, .6) 35px);
+        transition: opacity .25s; }
+      #kk-title { width: min(72vw, 520px); height: auto; overflow: visible; }
+      #kk-bar { width: min(52vw, 360px); height: auto; margin-top: 14px; overflow: visible; }
+      #kk-bar path { fill: none; stroke-linecap: round; }
+    </style>
+  </head>
+  <body>
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+    <div id="kk-loader">
+      <svg id="kk-title" viewBox="-8 -72 399 90" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="4.5,-59.4 -0.4,0.8" stroke="#2a2a32" stroke-width="7.5"/>
+      <polyline points="39.2,-59.4 1.9,-24.7" stroke="#2a2a32" stroke-width="7.5"/>
+      <polyline points="12.6,-33.2 39.0,2.8" stroke="#2a2a32" stroke-width="7.5"/>
+      <polyline points="50.7,-63.6 73.8,-63.4" stroke="#2a2a32" stroke-width="7.5"/>
+      <polyline points="62.4,-63.4 55.4,-1.1" stroke="#2a2a32" stroke-width="7.5"/>
+      <polyline points="44.3,-0.5 66.7,-0.2" stroke="#2a2a32" stroke-width="7.5"/>
+      <polyline points="112.7,-48.4 111.5,-49.5 110.0,-52.6 108.1,-55.4 105.3,-57.5 103.2,-59.5 100.1,-59.4 97.2,-58.7 93.0,-57.3 89.4,-56.2 87.3,-54.0 84.4,-50.6 82.1,-45.3 79.8,-40.2 77.9,-35.2 77.4,-30.4 77.3,-25.1 78.6,-20.2 79.6,-15.4 81.4,-10.0 83.7,-6.1 85.4,-3.8 88.9,-2.2 91.9,-0.6 94.9,0.0 98.7,0.1 101.2,-0.8 105.2,-3.6 107.8,-6.0 110.9,-8.3 112.7,-10.8" stroke="#2a2a32" stroke-width="7.5"/>
+      <polyline points="124.1,-62.2 118.3,0.2" stroke="#2a2a32" stroke-width="7.5"/>
+      <polyline points="158.1,-61.5 120.8,-25.9" stroke="#2a2a32" stroke-width="7.5"/>
+      <polyline points="131.5,-35.0 158.3,2.2" stroke="#2a2a32" stroke-width="7.5"/>
+      <polyline points="166.0,-60.1 165.1,-54.0 165.6,-45.6 165.2,-36.7 164.6,-28.0 165.1,-21.0 165.0,-16.1 165.9,-12.3 166.9,-9.9 168.4,-7.6 170.3,-5.7 173.1,-3.3 174.8,-2.5 177.8,-1.5 180.4,-0.5 184.2,-1.0 186.3,-1.7 188.8,-2.1 191.8,-2.6 194.3,-5.0 197.5,-6.3 198.3,-8.4 199.7,-10.8 202.1,-13.2 202.7,-17.7 203.2,-22.7 204.2,-29.3 204.5,-38.6 203.9,-47.5 204.8,-55.8 204.7,-61.6" stroke="#2a2a32" stroke-width="7.5"/>
+      <polyline points="210.4,1.2 212.8,-58.7" stroke="#2a2a32" stroke-width="7.5"/>
+      <polyline points="213.0,-58.2 217.4,-58.7 222.4,-58.3 228.1,-59.3 232.7,-59.2 237.0,-58.2 240.7,-55.4 243.8,-53.2 245.8,-49.6 246.5,-46.5 248.0,-43.3 247.1,-40.6 244.7,-36.9 242.3,-33.6 240.0,-31.3 235.9,-28.4 231.9,-27.9 225.6,-27.2 220.9,-26.0 214.9,-25.8 212.4,-25.8" stroke="#2a2a32" stroke-width="7.5"/>
+      <polyline points="276.2,-57.7 272.1,-0.5" stroke="#d8433a" stroke-width="7.5"/>
+      <polyline points="309.7,-57.8 274.4,-24.4" stroke="#d8433a" stroke-width="7.5"/>
+      <polyline points="284.2,-33.6 308.5,0.9" stroke="#d8433a" stroke-width="7.5"/>
+      <polyline points="319.5,-57.8 341.2,-58.5" stroke="#d8433a" stroke-width="7.5"/>
+      <polyline points="330.8,-57.9 326.9,1.7" stroke="#d8433a" stroke-width="7.5"/>
+      <polyline points="316.3,1.3 337.7,0.5" stroke="#d8433a" stroke-width="7.5"/>
+      <polyline points="346.9,1.0 350.9,-55.3" stroke="#d8433a" stroke-width="7.5"/>
+      <polyline points="351.0,-55.8 353.8,-55.5 358.3,-56.3 362.7,-56.1 367.0,-54.7 371.2,-53.1 375.1,-49.4 378.2,-45.4 381.4,-40.4 383.8,-35.1 384.3,-29.8 383.8,-23.8 381.3,-17.2 377.1,-11.4 374.1,-5.5 369.2,-2.3 365.1,-0.1 359.6,0.9 354.7,1.9 350.3,0.9 346.8,1.6" stroke="#d8433a" stroke-width="7.5"/>
+      </svg>
+      <svg id="kk-bar" viewBox="0 0 300 16"><path d="M4,9 C50,5 96,12 150,8 S250,5 296,9" stroke="rgba(42,42,50,.18)" stroke-width="5"/><path id="kk-fill" d="M4,9 C50,5 96,12 150,8 S250,5 296,9" stroke="#2a2a32" stroke-width="5" stroke-dasharray="300" stroke-dashoffset="300"/></svg>
+    </div>
+    <script>
+      var canvas = document.getElementById("unity-canvas");
+      var buildUrl = "Build";
+      var config = {
+        arguments: [],
+        dataUrl: buildUrl + "/Generic.data.unityweb?v=2611121553",
+        frameworkUrl: buildUrl + "/Generic.framework.js.unityweb?v=2611121553",
+        codeUrl: buildUrl + "/Generic.wasm.unityweb?v=2611121553",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Noni Games",
+        productName: "Kickup Kid",
+        productVersion: "1.0.0",
+        // hata olursa Unity uyarı penceresi açmasın (pencere sayfayı kilitliyor); konsola yazılır
+        errorHandler: function (msg, file, line) { console.error("[unity] " + msg + " @" + file + ":" + line); (window.kkErrors = window.kkErrors || []).push("" + msg); return true; },
+        // çok yüksek çözünürlükte çizilen piksel sayısı sınırlanır (telefon ve retina ekran)
+        devicePixelRatio: Math.max(1, Math.min(window.devicePixelRatio || 1, Math.sqrt(2600000 / Math.max(1, window.innerWidth * window.innerHeight)))),
+        showBanner: function (msg, type) { if (type == "error") console.error(msg); else console.warn(msg); }
+      };
+      var fill = document.getElementById("kk-fill"), len = 300;
+      try { len = fill.getTotalLength(); fill.style.strokeDasharray = len; fill.style.strokeDashoffset = len; } catch (e) {}
+      var loader = document.createElement("script");
+      loader.src = buildUrl + "/Generic.loader.js?v=2611121553";
+      loader.onload = function () {
+        createUnityInstance(canvas, config, function (p) { fill.style.strokeDashoffset = len * (1 - p); }).then(function (inst) {
+          window.unityInstance = inst;
+          var l = document.getElementById("kk-loader"); l.style.opacity = 0; setTimeout(function () { l.style.display = "none"; }, 260);
+        }).catch(function (m) { console.error(m); });
+      };
+      document.body.appendChild(loader);
+    </script>
+  </body>
+</html>
