@@ -49,9 +49,9 @@
       var buildUrl = "Build";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/Generic.data.unityweb?v=2611121553",
-        frameworkUrl: buildUrl + "/Generic.framework.js.unityweb?v=2611121553",
-        codeUrl: buildUrl + "/Generic.wasm.unityweb?v=2611121553",
+        dataUrl: buildUrl + "/Generic.data.unityweb?v=2611121751",
+        frameworkUrl: buildUrl + "/Generic.framework.js.unityweb?v=2611121751",
+        codeUrl: buildUrl + "/Generic.wasm.unityweb?v=2611121751",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Noni Games",
         productName: "Kickup Kid",
@@ -65,7 +65,7 @@
       var fill = document.getElementById("kk-fill"), len = 300;
       try { len = fill.getTotalLength(); fill.style.strokeDasharray = len; fill.style.strokeDashoffset = len; } catch (e) {}
       var loader = document.createElement("script");
-      loader.src = buildUrl + "/Generic.loader.js?v=2611121553";
+      loader.src = buildUrl + "/Generic.loader.js?v=2611121751";
       loader.onload = function () {
         createUnityInstance(canvas, config, function (p) { fill.style.strokeDashoffset = len * (1 - p); }).then(function (inst) {
           window.unityInstance = inst;
