@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- KICK_NOFAIL: deneme derlemesi, top yere dusunce oyun bitmez. yalniz deneme sitesi icin -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
     <title>Kickup Kid</title>
@@ -49,9 +50,9 @@
       var buildUrl = "Build";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/Generic.data.unityweb?v=2611121751",
-        frameworkUrl: buildUrl + "/Generic.framework.js.unityweb?v=2611121751",
-        codeUrl: buildUrl + "/Generic.wasm.unityweb?v=2611121751",
+        dataUrl: buildUrl + "/Generic.data.unityweb?v=2611122042",
+        frameworkUrl: buildUrl + "/Generic.framework.js.unityweb?v=2611122042",
+        codeUrl: buildUrl + "/Generic.wasm.unityweb?v=2611122042",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Noni Games",
         productName: "Kickup Kid",
@@ -65,7 +66,7 @@
       var fill = document.getElementById("kk-fill"), len = 300;
       try { len = fill.getTotalLength(); fill.style.strokeDasharray = len; fill.style.strokeDashoffset = len; } catch (e) {}
       var loader = document.createElement("script");
-      loader.src = buildUrl + "/Generic.loader.js?v=2611121751";
+      loader.src = buildUrl + "/Generic.loader.js?v=2611122042";
       loader.onload = function () {
         createUnityInstance(canvas, config, function (p) { fill.style.strokeDashoffset = len * (1 - p); }).then(function (inst) {
           window.unityInstance = inst;
