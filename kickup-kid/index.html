@@ -15,6 +15,7 @@
       #kk-title { width: min(72vw, 520px); height: auto; overflow: visible; }
       #kk-bar { width: min(52vw, 360px); height: auto; margin-top: 14px; overflow: visible; }
       #kk-bar path { fill: none; stroke-linecap: round; }
+      #kk-fail { margin: 18px 24px 0; max-width: 420px; text-align: center; font: 15px/1.35 -apple-system, "Segoe UI", Roboto, sans-serif; color: #5a5a66; }
     </style>
   </head>
   <body>
@@ -50,9 +51,9 @@
       var buildUrl = "Build";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/Generic.data.unityweb?v=2611140832",
-        frameworkUrl: buildUrl + "/Generic.framework.js.unityweb?v=2611140832",
-        codeUrl: buildUrl + "/Generic.wasm.unityweb?v=2611140832",
+        dataUrl: buildUrl + "/Generic.data.unityweb?v=2611141258",
+        frameworkUrl: buildUrl + "/Generic.framework.js.unityweb?v=2611141258",
+        codeUrl: buildUrl + "/Generic.wasm.unityweb?v=2611141258",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Noni Games",
         productName: "Kickup Kid",
@@ -61,17 +62,26 @@
         errorHandler: function (msg, file, line) { console.error("[unity] " + msg + " @" + file + ":" + line); (window.kkErrors = window.kkErrors || []).push("" + msg); return true; },
         // çok yüksek çözünürlükte çizilen piksel sayısı sınırlanır (telefon ve retina ekran)
         devicePixelRatio: Math.max(1, Math.min(window.devicePixelRatio || 1, Math.sqrt(2600000 / Math.max(1, window.innerWidth * window.innerHeight)))),
-        showBanner: function (msg, type) { if (type == "error") console.error(msg); else console.warn(msg); }
+        showBanner: function (msg, type) { if (type == "error") { console.error(msg); kkFail(); } else console.warn(msg); }
       };
+      // oyun açılamazsa (çok eski tarayıcı, yarım inen dosya) başlığın altına kısa bir not düşer; yoksa başlık öylece kalıyordu
+      var kkTr = /^tr/i.test(navigator.language || "");
+      function kkFail() {
+        if (window.kkFailed) return; window.kkFailed = 1;
+        var d = document.createElement("div"); d.id = "kk-fail";
+        d.textContent = kkTr ? "Oyun bu tarayıcıda açılamadı. Tarayıcını güncelleyip yeniden dene." : "The game could not start in this browser. Please update your browser and try again.";
+        document.getElementById("kk-loader").appendChild(d);
+      }
       var fill = document.getElementById("kk-fill"), len = 300;
       try { len = fill.getTotalLength(); fill.style.strokeDasharray = len; fill.style.strokeDashoffset = len; } catch (e) {}
       var loader = document.createElement("script");
-      loader.src = buildUrl + "/Generic.loader.js?v=2611140832";
+      loader.src = buildUrl + "/Generic.loader.js?v=2611141258";
+      loader.onerror = kkFail;
       loader.onload = function () {
         createUnityInstance(canvas, config, function (p) { fill.style.strokeDashoffset = len * (1 - p); }).then(function (inst) {
           window.unityInstance = inst;
           var l = document.getElementById("kk-loader"); l.style.opacity = 0; setTimeout(function () { l.style.display = "none"; }, 260);
-        }).catch(function (m) { console.error(m); });
+        }).catch(function (m) { console.error(m); kkFail(); });
       };
       document.body.appendChild(loader);
     </script>
