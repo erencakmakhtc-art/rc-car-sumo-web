@@ -23,9 +23,9 @@
       var buildUrl = "Build";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/Generic.data.unityweb",
-        frameworkUrl: buildUrl + "/Generic.framework.js.unityweb",
-        codeUrl: buildUrl + "/Generic.wasm.unityweb",
+        dataUrl: buildUrl + "/Generic.data.unityweb?v=2611230917",
+        frameworkUrl: buildUrl + "/Generic.framework.js.unityweb?v=2611230917",
+        codeUrl: buildUrl + "/Generic.wasm.unityweb?v=2611230917",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Noni Games",
         productName: "Mouse at the Ball",
@@ -34,7 +34,7 @@
       };
       function fail(msg) { document.getElementById("fail").textContent = msg; }
       var s = document.createElement("script");
-      s.src = buildUrl + "/Generic.loader.js";
+      s.src = buildUrl + "/Generic.loader.js?v=2611230917";
       s.onload = function () {
         createUnityInstance(canvas, config, function (p) { document.getElementById("fill").style.width = Math.round(p * 100) + "%"; })
           .then(function (inst) { window.unityInstance = inst; var l = document.getElementById("ld"); l.style.opacity = "0"; setTimeout(function () { l.remove(); }, 400); canvas.focus(); })
