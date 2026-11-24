@@ -55,9 +55,9 @@
       var buildUrl = "Build";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/689520cdab4524752c892d62382a56c8.data.unityweb?v=2611241711",
-        frameworkUrl: buildUrl + "/63a3036dac67c48f4a98e4126ff81b19.framework.js.unityweb?v=2611241711",
-        codeUrl: buildUrl + "/2a7036923644b64abac0532b5e54b701.wasm.unityweb?v=2611241711",
+        dataUrl: buildUrl + "/8f04b80371f523235d27862a46897e6d.data.unityweb?v=2611241800",
+        frameworkUrl: buildUrl + "/63a3036dac67c48f4a98e4126ff81b19.framework.js.unityweb?v=2611241800",
+        codeUrl: buildUrl + "/b83217e1f137b9cf4a6533b662ba9e27.wasm.unityweb?v=2611241800",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Noni Games",
         productName: "Keep the Ball Up",
@@ -79,7 +79,7 @@
       var fill = document.getElementById("kk-fill"), len = 300;
       try { len = fill.getTotalLength(); fill.style.strokeDasharray = len; fill.style.strokeDashoffset = len; } catch (e) {}
       var loader = document.createElement("script");
-      loader.src = buildUrl + "/f98d748987fa183fd60d3fbabc612ad7.loader.js?v=2611241711";
+      loader.src = buildUrl + "/f98d748987fa183fd60d3fbabc612ad7.loader.js?v=2611241800";
       loader.onerror = kkFail;
       loader.onload = function () {
         createUnityInstance(canvas, config, function (p) { fill.style.strokeDashoffset = len * (1 - p); }).then(function (inst) {
