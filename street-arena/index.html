@@ -55,9 +55,9 @@
       var buildUrl = "Build";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/956014c3ab78b27306c1b4cf45c9d157.data.unityweb?v=2611250413",
-        frameworkUrl: buildUrl + "/2745d266a71a6d6ab49e90a535662923.framework.js.unityweb?v=2611250413",
-        codeUrl: buildUrl + "/77b2f287c75fd9c7df4d716c2fef9c00.wasm.unityweb?v=2611250413",
+        dataUrl: buildUrl + "/493a94b90548a0cf4a5d4d787f676a88.data.unityweb?v=2611250416",
+        frameworkUrl: buildUrl + "/2745d266a71a6d6ab49e90a535662923.framework.js.unityweb?v=2611250416",
+        codeUrl: buildUrl + "/2cabe29accb837760a38de8527924d55.wasm.unityweb?v=2611250416",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Noni Games",
         productName: "Street Arena",
@@ -79,7 +79,7 @@
       var fill = document.getElementById("kk-fill"), len = 300;
       try { len = fill.getTotalLength(); fill.style.strokeDasharray = len; fill.style.strokeDashoffset = len; } catch (e) {}
       var loader = document.createElement("script");
-      loader.src = buildUrl + "/64768c1f67dedc44654c8c9ddc6456ee.loader.js?v=2611250413";
+      loader.src = buildUrl + "/64768c1f67dedc44654c8c9ddc6456ee.loader.js?v=2611250416";
       loader.onerror = kkFail;
       loader.onload = function () {
         createUnityInstance(canvas, config, function (p) { fill.style.strokeDashoffset = len * (1 - p); }).then(function (inst) {
