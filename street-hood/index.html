@@ -6,7 +6,7 @@
     <title>Keep the Ball Up</title>
     <style>
       html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #f5efdf; touch-action: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-touch-callout: none; }
-      #unity-canvas { position: fixed; left: 0; top: 0; width: 100%; height: 100%; display: block; outline: none; background: #f5efdf; }
+      #unity-canvas { position: fixed; left: env(safe-area-inset-left, 0px); top: env(safe-area-inset-top, 0px); width: calc(100% - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)); height: calc(100% - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); display: block; outline: none; background: #f5efdf; }
       /* yükleme ekranı: çizgili defter sayfası, başlık oyunun kendi yazısıyla */
       #kk-loader { position: fixed; left: 0; top: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #f5efdf;
         background-image: linear-gradient(to right, transparent 0, transparent 9%, rgba(224, 122, 122, .65) 9%, rgba(224, 122, 122, .65) calc(9% + 2px), transparent calc(9% + 2px)), repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(157, 189, 224, .6) 33px, rgba(157, 189, 224, .6) 35px);
@@ -55,9 +55,9 @@
       var buildUrl = "Build";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/2bece29a1b7fa0fd11746c340bae76a7.data.unityweb?v=2611272002",
-        frameworkUrl: buildUrl + "/8f2f873be984ac06ad6a6b6c2730cef5.framework.js.unityweb?v=2611272002",
-        codeUrl: buildUrl + "/eb2120ad905738bc260af313ef85b6ae.wasm.unityweb?v=2611272002",
+        dataUrl: buildUrl + "/452a106ef8e793915ffc8f5c57f0e955.data.unityweb?v=2611272006",
+        frameworkUrl: buildUrl + "/8f2f873be984ac06ad6a6b6c2730cef5.framework.js.unityweb?v=2611272006",
+        codeUrl: buildUrl + "/eb2120ad905738bc260af313ef85b6ae.wasm.unityweb?v=2611272006",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Noni Games",
         productName: "Keep the Ball Up",
@@ -79,7 +79,7 @@
       var fill = document.getElementById("kk-fill"), len = 300;
       try { len = fill.getTotalLength(); fill.style.strokeDasharray = len; fill.style.strokeDashoffset = len; } catch (e) {}
       var loader = document.createElement("script");
-      loader.src = buildUrl + "/8db740f63a81232abc4820d1bb58f78b.loader.js?v=2611272002";
+      loader.src = buildUrl + "/8db740f63a81232abc4820d1bb58f78b.loader.js?v=2611272006";
       loader.onerror = kkFail;
       loader.onload = function () {
         createUnityInstance(canvas, config, function (p) { fill.style.strokeDashoffset = len * (1 - p); }).then(function (inst) {
