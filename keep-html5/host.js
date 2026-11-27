@@ -46,14 +46,17 @@
   KH.mouseX = function () { return mx; }; KH.mouseY = function () { return my; };
 
   // dokunuşlar: Unity gibi her parmağın bir evresi var (0 başladı, 1 kıpırdadı, 2 duruyor, 3 bitti, 4 iptal); biten parmak bir kare daha listede kalır
-  var touches = [], tmap = {};
+  var touches = [], tmap = {}, mouseFinger = -1;
   function tpos(t) { var r = cv.getBoundingClientRect(); return [(t.clientX - r.left) / r.width * W, (1 - (t.clientY - r.top) / r.height) * H]; }
   function onTouch(e, phase) {
     e.preventDefault(); unlockAudio();
     for (var i = 0; i < e.changedTouches.length; i++) {
       var t = e.changedTouches[i], p = tpos(t), o = tmap[t.identifier];
+      // Unity gibi: ilk parmak fareyi de taklit eder (menü düğmeleri GetMouseButtonDown ile okur)
+      if (phase === 0 && mouseFinger === -1) { mouseFinger = t.identifier; mx = p[0]; my = p[1]; mbDown[0] = 1; mb[0] = 1; }
+      else if (t.identifier === mouseFinger) { mx = p[0]; my = p[1]; if (phase >= 3) { mb[0] = 0; mouseFinger = -1; } }
       if (phase === 0) { o = { id: t.identifier, x: p[0], y: p[1], ph: 0, fresh: 1 }; tmap[t.identifier] = o; touches.push(o); }
-      else if (o) { o.x = p[0]; o.y = p[1]; if (phase === 1) { if (!o.fresh) o.ph = 1; } else { o.ph = phase; o.end = 1; } }
+      else if (o) { o.x = p[0]; o.y = p[1]; if (phase === 1) { if (!o.fresh) o.ph = 1; } else if (o.fresh) o.pend = phase; else { o.ph = phase; o.end = 1; } }   /* kareyi görmeden biten hızlı dokunuş: bu kare "başladı", sonraki kare "bitti" */
     }
   }
   cv.addEventListener('touchstart', function (e) { onTouch(e, 0); }, { passive: false });
@@ -67,7 +70,7 @@
   KH.touchPhase = function (i) { return touches[i] ? touches[i].ph : 3; };
   function inputEndFrame() {
     pressed = {}; mbDown = {};
-    for (var i = touches.length - 1; i >= 0; i--) { var o = touches[i]; if (o.end) { touches.splice(i, 1); delete tmap[o.id]; } else { if (o.ph === 0) o.ph = 2; else if (o.ph === 1) o.ph = 2; o.fresh = 0; } }
+    for (var i = touches.length - 1; i >= 0; i--) { var o = touches[i]; if (o.end) { touches.splice(i, 1); delete tmap[o.id]; } else if (o.pend) { o.ph = o.pend; o.pend = 0; o.end = 1; o.fresh = 0; } else { if (o.ph === 0) o.ph = 2; else if (o.ph === 1) o.ph = 2; o.fresh = 0; } }
   }
 
   // ---------- kayıt ----------
