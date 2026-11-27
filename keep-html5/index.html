@@ -54,11 +54,11 @@
     <script>
       // yükleme çubuğu: dört dosya indikçe dolar
       (function () {
-        var fill = document.getElementById('kk-fill'), list = ['h5.min.js', 'portal.js', 'host.js', 'game.min.js', 'ink.js'], done = 0;
+        var fill = document.getElementById('kk-fill'), list = ['h5.min.js', 'portal.js', 'host.js', 'photon.js', 'net.js', 'game.min.js', 'ink.js'], done = 0;
         function bar() { fill.style.strokeDashoffset = 300 * (1 - done / list.length); }
         function load(i) {
           if (i >= list.length) { (function wait() { if (window.Kick && Kick.Game && Kick.Game.Boot) KH.start(); else setTimeout(wait, 20); })(); return; }
-          var s = document.createElement('script'); s.src = list[i] + '?v=2611272233';
+          var s = document.createElement('script'); s.src = list[i] + '?v=2611272240';
           s.onload = function () {
             done++; bar(); load(i + 1);
           };
