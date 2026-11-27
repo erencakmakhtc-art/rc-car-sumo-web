@@ -58,7 +58,7 @@
         function bar() { fill.style.strokeDashoffset = 300 * (1 - done / list.length); }
         function load(i) {
           if (i >= list.length) { (function wait() { if (window.Kick && Kick.Game && Kick.Game.Boot) KH.start(); else setTimeout(wait, 20); })(); return; }
-          var s = document.createElement('script'); s.src = list[i] + '?v=2611272240';
+          var s = document.createElement('script'); s.src = list[i] + '?v=2611272249';
           s.onload = function () {
             done++; bar(); load(i + 1);
           };
