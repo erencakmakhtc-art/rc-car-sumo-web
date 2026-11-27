@@ -108,10 +108,12 @@
   // dosya sesleri: KK_AUDIO içine gömülü base64 OGG/MP3 ya da dosya yolu. çözülene kadar "yükleniyor"
   KH.clipFile = function (path) {
     var c = { buf: null, state: 1, len: 0, sec: 0, data: null }; clips.push(c); var id = clips.length - 1;
+    // ses düzeyi eşitleme (Sfx.LoadFiles RMS'i hemen ister, çözme ise sonradan biter): pack.py her dosyanın RMS'ini önceden yazar; tek örnekli veri o RMS'i verir
+    var rms = window.KK_RMS && window.KK_RMS[path]; if (rms) { c.len = 1; c.data = [rms]; c.fixed = 1; }
     var src = (window.KK_AUDIO && window.KK_AUDIO[path]) || ('audio/' + path + '.m4a');
     if (!ac) { c.state = 3; return id; }
     fetch(src).then(function (r) { return r.arrayBuffer(); }).then(function (a) { return new Promise(function (ok, no) { ac.decodeAudioData(a, ok, no); }); })
-      .then(function (b) { c.buf = b; c.len = b.length; c.sec = b.duration; c.state = 2; c.data = b.getChannelData(0); }).catch(function () { c.state = 3; });
+      .then(function (b) { c.buf = b; c.sec = b.duration; c.state = 2; if (!c.fixed) { c.len = b.length; c.data = b.getChannelData(0); } }).catch(function () { c.state = 3; });
     return id;
   };
   KH.clipLen = function (id) { return clips[id] ? clips[id].len : 0; };

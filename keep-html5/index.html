@@ -50,7 +50,7 @@
 </svg>
       <svg id="kk-bar" viewBox="0 0 300 16"><path d="M4,9 C50,5 96,12 150,8 S250,5 296,9" stroke="rgba(42,42,50,.18)" stroke-width="5"/><path id="kk-fill" d="M4,9 C50,5 96,12 150,8 S250,5 296,9" stroke="#2a2a32" stroke-width="5" stroke-dasharray="300" stroke-dashoffset="300"/></svg>
     </div>
-    <script>window.KK_FILES = {"Sfx": "bounce,cheer,engine,foot,goalwin,head,knee,nos,post,roar,shoulder,spray,swish,tick,whistle,whoosh", "Music": "menu"};</script>
+    <script>window.KK_FILES = {"Sfx": "bounce,cheer,engine,foot,goalwin,head,knee,nos,post,roar,shoulder,spray,swish,tick,whistle,whoosh", "Music": "menu"}; window.KK_RMS = {"Sfx/bounce": 0.20298, "Sfx/cheer": 0.23662, "Sfx/engine": 0.3202, "Sfx/foot": 0.35931, "Sfx/goalwin": 0.25302, "Sfx/head": 0.2289, "Sfx/knee": 0.18745, "Sfx/nos": 0.25232, "Sfx/post": 0.07486, "Sfx/roar": 0.15496, "Sfx/shoulder": 0.22603, "Sfx/spray": 0.15943, "Sfx/swish": 0.06969, "Sfx/tick": 0.06896, "Sfx/whistle": 0.2516, "Sfx/whoosh": 0.41442, "Music/menu": 0.16399};</script>
     <script>
       // yükleme çubuğu: dört dosya indikçe dolar
       (function () {
@@ -58,7 +58,7 @@
         function bar() { fill.style.strokeDashoffset = 300 * (1 - done / list.length); }
         function load(i) {
           if (i >= list.length) { (function wait() { if (window.Kick && Kick.Game && Kick.Game.Boot) KH.start(); else setTimeout(wait, 20); })(); return; }
-          var s = document.createElement('script'); s.src = list[i] + '?v=2611272224';
+          var s = document.createElement('script'); s.src = list[i] + '?v=2611272233';
           s.onload = function () {
             done++; bar(); load(i + 1);
           };
